@@ -1,1 +1,276 @@
+export default function PaperWebpage() {
+  const metrics = [
+    { label: 'Best single-model QWK', value: '0.919', note: 'ResNet-50' },
+    { label: 'Most consistent ensemble', value: '0.934 ± 0.017', note: 'Weighted soft voting' },
+    { label: 'Backbones benchmarked', value: '6', note: 'CNN and transformer families' },
+    { label: 'Cross-validation', value: '5-fold', note: 'Stratified protocol' },
+  ];
+
+  const backbones = [
+    ['ResNet-50', '0.728', '0.858', '0.919', '0.962'],
+    ['ConvNeXt-Tiny', '0.732', '0.848', '0.914', '0.956'],
+    ['Swin Transformer', '0.705', '0.835', '0.916', '0.954'],
+    ['DeiT-Small', '0.697', '0.823', '0.901', '0.949'],
+    ['EfficientNet-B3', '0.624', '0.778', '0.841', '0.928'],
+    ['DenseNet-121', '0.614', '0.769', '0.821', '0.924'],
+  ];
+
+  const ensembles = [
+    ['Hard voting', '0.9255 ± 0.0226'],
+    ['Weighted soft voting', '0.9337 ± 0.0172'],
+    ['Stacking', '0.9256 ± 0.0211'],
+    ['Hybrid class-level fusion', '0.9282 ± 0.0242'],
+  ];
+
+  const contributions = [
+    {
+      title: 'Backbone benchmarking',
+      text: 'A controlled comparison of six CNN and transformer backbones for five-class diabetic retinopathy grading on APTOS 2019 using a unified training and evaluation protocol.',
+    },
+    {
+      title: 'Hybrid ensembling',
+      text: 'Evaluation of hard voting, weighted soft voting, stacking, and a hybrid class-level fusion strategy to study grade-wise robustness under class imbalance.',
+    },
+    {
+      title: 'Multimodal explainability',
+      text: 'Combination of Grad-CAM++ visual localization with vision-language model rationales to produce explanations that are more readable in a clinical setting.',
+    },
+    {
+      title: 'Explanation quality evaluation',
+      text: 'Quantitative assessment of generated explanations using semantic similarity, image-text alignment, and clinical descriptor coverage.',
+    },
+  ];
+
+  const pipeline = [
+    'APTOS 2019 dataset with 3,662 fundus images and five ordinal DR grades.',
+    'Unified preprocessing with 224×224 resizing, CLAHE, augmentation, and ImageNet normalization.',
+    'Training of six ImageNet-pretrained backbones under stratified five-fold cross-validation.',
+    'Construction of ensemble models from the strongest single backbones.',
+    'Grad-CAM++ overlays for visual evidence localization.',
+    'LLaVA and LLaVA-Med based rationale generation with conservative prompt constraints.',
+    'Evaluation with QWK, macro-F1, weighted-F1, macro-AUC, BERTScore, CLIPScore, and coverage.',
+  ];
+
+  const authors = [
+    'Pir Bakhsh Khokhar',
+    'Carmine Gravino',
+    'Fabio Palomba',
+    'Sule Yildirim Yayilgan',
+    'Sarang Shaikh',
+  ];
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <section className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute -top-24 left-10 h-72 w-72 rounded-full bg-emerald-400 blur-3xl" />
+          <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-cyan-400 blur-3xl" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
+            <div>
+              <div className="mb-4 inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-1 text-sm text-emerald-200">
+                Research paper webpage
+              </div>
+              <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                From Pixels to Explanations
+              </h1>
+              <p className="mt-4 max-w-4xl text-xl text-slate-300">
+                Interpretable diabetic retinopathy grading with CNN-transformer ensembles, visual explainability, and vision-language models.
+              </p>
+              <p className="mt-6 max-w-3xl text-base leading-8 text-slate-300">
+                This work studies how strong diabetic retinopathy graders can be paired with multimodal explanations. The paper benchmarks representative CNN and transformer backbones, compares ensemble strategies, and evaluates both visual and textual explainability under an explicit and reproducible protocol.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3 text-sm text-slate-200">
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Diabetic retinopathy grading</span>
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Ensemble learning</span>
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Multimodal explainability</span>
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Vision-language models</span>
+                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">Clinical interpretability</span>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
+              <p className="text-sm uppercase tracking-[0.2em] text-emerald-200">Authors</p>
+              <div className="mt-4 space-y-2 text-lg text-white">
+                {authors.map((author) => (
+                  <div key={author} className="rounded-2xl border border-white/10 bg-black/10 px-4 py-3">
+                    {author}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm leading-7 text-slate-200">
+                University of Salerno and Norwegian University of Science and Technology
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {metrics.map((item) => (
+            <div key={item.label} className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-lg">
+              <p className="text-sm text-slate-400">{item.label}</p>
+              <div className="mt-3 text-3xl font-semibold text-white">{item.value}</div>
+              <p className="mt-2 text-sm text-slate-300">{item.note}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-8 px-6 py-4 lg:grid-cols-[1fr_0.95fr] lg:px-8">
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-lg">
+          <h2 className="text-2xl font-semibold text-white">Abstract</h2>
+          <p className="mt-5 leading-8 text-slate-300">
+            The study addresses a central problem in diabetic retinopathy screening: high-performing deep learning classifiers are often difficult to interpret in a clinically meaningful way. To address this, the paper combines strong discriminative grading models with multimodal explanations. Six CNN and transformer backbones are benchmarked on APTOS 2019, multiple ensemble strategies are evaluated, Grad-CAM++ is used for visual attribution, and vision-language models generate concise textual rationales. The results show that modern CNNs provide the strongest single-model baselines, weighted soft voting yields the most consistent ensemble gains, and textual explanations can be evaluated jointly with predictive performance through explicit metrics.
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-lg">
+          <h2 className="text-2xl font-semibold text-white">Main contributions</h2>
+          <div className="mt-6 grid gap-4">
+            {contributions.map((item) => (
+              <div key={item.title} className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
+                <h3 className="text-lg font-medium text-white">{item.title}</h3>
+                <p className="mt-2 leading-7 text-slate-300">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="mb-8 max-w-3xl">
+          <h2 className="text-3xl font-semibold text-white">Method overview</h2>
+          <p className="mt-3 leading-8 text-slate-300">
+            The paper follows a three-stage logic: first benchmark individual backbones, then test whether ensembling improves grade-wise robustness, and finally examine whether high-performing graders can also provide meaningful multimodal explanations.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {pipeline.map((step, index) => (
+            <div key={step} className="rounded-3xl border border-white/10 bg-white/5 p-6">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-400/15 text-sm font-semibold text-emerald-200">
+                {index + 1}
+              </div>
+              <p className="leading-7 text-slate-200">{step}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold text-white">Single-backbone results</h2>
+            <p className="mt-3 text-slate-300">
+              ResNet-50 and ConvNeXt-Tiny emerged as the most reliable standalone models under the unified protocol.
+            </p>
+            <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
+              <table className="min-w-full text-left text-sm">
+                <thead className="bg-white/10 text-slate-200">
+                  <tr>
+                    <th className="px-4 py-3 font-medium">Backbone</th>
+                    <th className="px-4 py-3 font-medium">Macro-F1</th>
+                    <th className="px-4 py-3 font-medium">Weighted-F1</th>
+                    <th className="px-4 py-3 font-medium">QWK</th>
+                    <th className="px-4 py-3 font-medium">Macro-AUC</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {backbones.map((row) => (
+                    <tr key={row[0]} className="border-t border-white/10 text-slate-300">
+                      {row.map((cell) => (
+                        <td key={cell} className="px-4 py-3">{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold text-white">Ensemble results</h2>
+            <p className="mt-3 text-slate-300">
+              Weighted soft voting achieved the strongest and most stable ordinal agreement across folds.
+            </p>
+            <div className="mt-6 space-y-4">
+              {ensembles.map(([name, score]) => (
+                <div key={name} className="flex items-center justify-between rounded-2xl border border-white/10 bg-slate-900/60 px-5 py-4">
+                  <span className="text-slate-200">{name}</span>
+                  <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-sm font-medium text-emerald-200">{score}</span>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 rounded-2xl border border-amber-300/20 bg-amber-300/10 p-5 text-sm leading-7 text-slate-200">
+              Paired fold-wise statistical tests did not show a statistically reliable advantage of hybrid class-level fusion over standard ensemble strategies.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold text-white">Multimodal explainability</h2>
+            <div className="mt-6 grid gap-4">
+              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
+                <h3 className="text-lg font-medium text-white">Visual evidence</h3>
+                <p className="mt-2 leading-7 text-slate-300">
+                  Grad-CAM++ overlays are used to highlight image regions contributing to the predicted diabetic retinopathy grade. The paper reports plausible but sometimes coarse localization, especially in lower grades.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
+                <h3 className="text-lg font-medium text-white">Textual rationale</h3>
+                <p className="mt-2 leading-7 text-slate-300">
+                  LLaVA and LLaVA-Med variants generate short clinician-oriented explanations conditioned on the fundus image, predicted grade, and class probabilities under conservative prompting constraints.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-5">
+                <h3 className="text-lg font-medium text-white">Quality assessment</h3>
+                <p className="mt-2 leading-7 text-slate-300">
+                  Explanation quality is assessed using BERTScore for semantic fidelity, CLIPScore for image-text alignment, and a descriptor coverage metric for clinical completeness.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold text-white">Key findings</h2>
+            <div className="mt-6 space-y-4">
+              {[
+                'Modern CNN backbones were the strongest single-model graders in this study.',
+                'Weighted soft voting produced the most consistent ensemble improvement.',
+                'Hybrid class-level fusion was competitive but not statistically better in paired fold comparisons.',
+                'Grad-CAM++ explanations were visually plausible yet often coarse.',
+                'VLM rationales were generally consistent with the predicted grade and can be evaluated explicitly rather than shown only as examples.',
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-black/10 px-5 py-4 text-slate-100">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-white/10 bg-slate-900/80">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <h2 className="text-2xl font-semibold text-white">Conclusion</h2>
+              <p className="mt-3 max-w-4xl leading-8 text-slate-300">
+                The paper shows that diabetic retinopathy grading performance and multimodal explainability can be studied jointly under a clear evaluation protocol. The results motivate external validation, expert assessment, and further work on stronger clinically grounded explanation models.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-white/10 bg-white/5 px-6 py-5 text-sm text-slate-300">
+              Designed as a clean one-page research showcase for the manuscript.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
 
